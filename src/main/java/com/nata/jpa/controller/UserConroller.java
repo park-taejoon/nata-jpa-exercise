@@ -1,4 +1,4 @@
-package com.nata.jpa.Controller;
+package com.nata.jpa.controller;
 
 import java.util.List;
 
@@ -9,24 +9,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nata.jpa.model.User;
-import com.nata.jpa.repositorie.UserRepository;
+import com.nata.jpa.service.UserService;
 
 @RestController
 @RequestMapping("/user")
 public class UserConroller {
 	 @Autowired
-	 private UserRepository userRepository;
+	 private UserService userService;
 	 @GetMapping("/all")
 	 public List<User> findByUserAll() {
-	       return userRepository.findAll();
+	       return userService.findAll();
 	 }
-	 //https://sanghaklee.tistory.com/57
-	 @GetMapping("/id/{id}")
-     public User getProductById(@PathVariable("id") long id) {
-        return userRepository.findById(id).get();
+	 @GetMapping("/cd/{id}")
+     public User getProductByCd(@PathVariable("id") long id) {
+        return userService.findByCd(id).get();
      }
-	 @GetMapping("/nick/{nick}")
-     public User getProductById(@PathVariable("nick") String nick) {
-        return userRepository.findByNick(nick).get();
+	 @GetMapping("/id/{id}")
+     public User getProductById(@PathVariable("id") String id) {
+        return userService.findById(id).get();
      }
 }

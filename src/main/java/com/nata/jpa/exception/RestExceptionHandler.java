@@ -14,14 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 public class RestExceptionHandler {
 	//rest 500에러는 안됨.
-	
 	private HttpStatus forbidden = HttpStatus.FORBIDDEN;
 	
 	@ExceptionHandler(value = { NoSuchElementException.class})
 	public ErrorResponse noSuchElementException(Exception e) {
-	    return ErrorResponse.builder()
-	    					.status(forbidden.value())
-	    					.message(forbidden.getReasonPhrase())
-	    					.build();
+	    return new ErrorResponse(forbidden);
 	}
 }
