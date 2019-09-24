@@ -14,15 +14,12 @@ import com.nata.jpa.repositorie.UserRepository;
 @RestController
 @RequestMapping("/user")
 public class UserConroller {
-	
 	 @Autowired
 	 private UserRepository userRepository;
-	 
 	 @GetMapping("/all")
 	 public List<User> findByUserAll() {
 	       return userRepository.findAll();
 	 }
-	 
 	 //https://sanghaklee.tistory.com/57
 	 @GetMapping("/id/{id}")
      public User getProductById(@PathVariable("id") long id) {
