@@ -22,24 +22,22 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@Table(name="t_project")
+@Table(name="t_issue")
 @Entity
-public class Project {
+public class Issue {
 	@Id
-	@Column(name="project_cd")
+	@Column(name="issue_cd")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	Long cd;
 	
-	@Column(name="project_subject",length=20)
+	@Column(name="issue_subject",length=20)
 	String subject;
-	
 	@Lob
-	@Column(name="project_desc",nullable=true)
+	@Column(name="issue_desc",nullable=true)
 	String desc;
 	
 	@Enumerated(EnumType.STRING)
 	CompleteStatus complete_status;
-	
 	String writer;
 	@Temporal(TemporalType.TIMESTAMP)
     Date write_dt;

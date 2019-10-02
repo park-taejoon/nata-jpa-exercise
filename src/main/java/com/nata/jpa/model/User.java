@@ -31,7 +31,7 @@ public class User implements UserDetails{
 	
 	private static final long serialVersionUID = 1990051315112426863L;
 	@Id
-	@Column(name="user_cd",length=24)
+	@Column(name="user_cd")
 	@GeneratedValue(strategy=GenerationType.AUTO)//ID가 자동으로 생성되어야 함
 	Long cd;
 	@Column(name="user_id",length=20,unique=true)
