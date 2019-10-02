@@ -11,8 +11,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private int bCryptStrength = 7;
 	@Override
-	public void configure(WebSecurity web) throws Exception {
-			web.ignoring().antMatchers("/**");
+	public void configure(WebSecurity web) {
+		web.ignoring().antMatchers("/**");
 	}
 	
 	@Bean

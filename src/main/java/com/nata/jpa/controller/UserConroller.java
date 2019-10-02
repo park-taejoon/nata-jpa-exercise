@@ -20,9 +20,11 @@ public class UserConroller {
 	 public List<User> findByUserAll() {
 	       return userService.findAll();
 	 }
-	 @GetMapping("/group")
-	 public List<User> findByGroup() {
-	       return userService.findAll();
+	 @GetMapping("/equals/{id}")
+	 public Boolean isSameFindEquals(@PathVariable("id") long id) {
+		 //일시적인 캐싱,sql 1번 실행.
+		 
+		 return userService.findByCd(id).get() == userService.findByCd(id).get();
 	 }
 	 @GetMapping("/cd/{id}")
      public User getProductByCd(@PathVariable("id") long id) {

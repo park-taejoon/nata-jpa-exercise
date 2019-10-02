@@ -9,3 +9,15 @@ spring:
     username: sa
     password:
 
+  jpa:
+    show-sql: true
+    database: h2
+ #   database-platform: org.hibernate.dialect.Oracle10gDialect
+    properties:
+      hibernate:
+        format_sql : true
+        use_sql_comments : true
+    hibernate:
+      ddl-auto: create
+      use-new-id-generator-mappings: true
+     

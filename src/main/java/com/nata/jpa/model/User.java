@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +16,7 @@ import javax.persistence.Transient;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -22,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
 @Table(name="t_user")
@@ -30,17 +31,17 @@ public class User implements UserDetails{
 	
 	private static final long serialVersionUID = 1990051315112426863L;
 	@Id
-	@Column(name="user_cd")
+	@Column(name="user_cd",length=24)
 	@GeneratedValue(strategy=GenerationType.AUTO)//ID가 자동으로 생성되어야 함
-	long cd;
-	@Column(name="user_id")
+	Long cd;
+	@Column(name="user_id",length=20,unique=true)
 	@NonNull
 	String id;
-	@Column(name="user_email")
+	@Column(name="user_email",nullable=false)
 	@NonNull
 	String email;
 	@NonNull
-	@Column(name="user_password")
+	@Column(name="user_password",nullable=false)
 	String password;
 	
 	@Transient
