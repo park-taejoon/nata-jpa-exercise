@@ -1,5 +1,6 @@
 package com.nata.jpa.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -44,16 +46,25 @@ public class User implements UserDetails{
 	@Column(name="user_password",nullable=false)
 	String password;
 	
+	// user 입장에서 프로젝트 멤버와 이슈 멤버를 양방향으로 조회 할 이유는 없을 것 같다.
+//	@Transient
+//	@OneToMany(mappedBy="puser")
+//	private List<ProjectMember> pMembers = new ArrayList<>();
+//	@Transient
+//	@OneToMany(mappedBy="iuser")
+//	private List<IssueMember> iMembers = new ArrayList<>();
+//	
+	
 	@Transient
 	private List<GrantedAuthority> authorities;
 	@Column(name="expire_yn")
-    private boolean accountNonExpired;//사용자 계정이 만료된 경우;
+    private boolean accountNonExpired = true;//사용자 계정이 만료된 경우;
 	@Column(name="lock_yn")
-    private boolean accountNonLocked;//사용자가 잠겨 있는지 여부를 나타냅니다.
+    private boolean accountNonLocked = true;//사용자가 잠겨 있는지 여부를 나타냅니다.
 	@Column(name="credential_yn")
-    private boolean credentialsNonExpired;//사용자의 자격 증명 (암호)이 만료되었는지 여부를 나타냅니다.
+    private boolean credentialsNonExpired = true;//사용자의 자격 증명 (암호)이 만료되었는지 여부를 나타냅니다.
 	@Column(name="use_yn")
-    private boolean enabled;// 사용자의 사용 가능 여부를 나타냅니다.
+    private boolean enabled = true;// 사용자의 사용 가능 여부를 나타냅니다.
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

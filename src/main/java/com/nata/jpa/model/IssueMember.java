@@ -30,12 +30,20 @@ public class IssueMember {
 	@ManyToOne
 	@JoinColumn(name="issue_cd")
 	Issue issue;
-	@Column(name="user_cd",insertable=false, updatable=false)
-	Long user_cd;
+	@ManyToOne
+	@JoinColumn(name="user_cd")
+	User iuser;
 	
 	String writer;
 	@Temporal(TemporalType.TIMESTAMP)
     Date write_dt;
    
-	
+	public void chageIssue(Issue issue) {
+		this.issue = issue;
+		issue.getMembers().add(this);
+	}
+	public void changeIuser(User iuser) {
+		this.iuser = iuser;
+		//iuser.getIMembers().add(this);
+	}
 }

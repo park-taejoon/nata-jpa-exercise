@@ -17,10 +17,11 @@ import javax.persistence.TemporalType;
 
 import com.nata.jpa.model.enums.ProjectMemberStatus;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter @Setter
 @NoArgsConstructor
 @Table(name="t_project_member")
 @Entity
@@ -33,8 +34,9 @@ public class ProjectMember {
 	@ManyToOne
 	@JoinColumn(name="project_cd")
 	Project project;
-	@Column(name="user_cd",insertable=false, updatable=false)
-	Long userCd;
+	@ManyToOne
+	@JoinColumn(name="user_cd", insertable=false, updatable=false)
+	User puser;
 	
 	@Enumerated(EnumType.STRING)
 	ProjectMemberStatus member_status;
@@ -47,4 +49,14 @@ public class ProjectMember {
     @Temporal(TemporalType.TIMESTAMP)
     Date update_dt;
 	
+    public void changeProject(Project project) {
+    	//연관관계 편의 메서드.
+		this.project = project;
+		project.getMembers().add(this);
+	}
+    public void changePuser(User puser) {
+		this.puser = puser;
+		//puser.getPMembers().add(this);
+	}
+    
 }
